@@ -1,0 +1,33 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="yearend"
+run/main_scene="uid://db3jjfp1piwg8"
+config/features=PackedStringArray("4.5", "GL Compatibility")
+config/icon="res://resource/icon.svg"
+
+[display]
+
+window/size/viewport_width=324
+window/size/viewport_height=576
+window/size/mode=1
+window/size/window_width_override=648
+window/size/window_height_override=1152
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
+window/handheld/orientation=1
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

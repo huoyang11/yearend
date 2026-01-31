@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://dyssxpbqwkor"]
+
+[ext_resource type="Script" uid="uid://bobgcq7a66b5q" path="res://script/player.gd" id="1_oj046"]
+[ext_resource type="Texture2D" uid="uid://c2ewgps4o1f11" path="res://resource/new_character.png" id="1_umsav"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oj046"]
+size = Vector2(15, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj046"]
+atlas = ExtResource("1_umsav")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1o1i"]
+atlas = ExtResource("1_umsav")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wowq3"]
+atlas = ExtResource("1_umsav")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1lk0m"]
+atlas = ExtResource("1_umsav")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_opt6g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj046")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1o1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wowq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1lk0m")
+}],
+"loop": true,
+"name": &"downidle",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oj046"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:velocity")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("AnimatedSprite2D:flip_h")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_oj046")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_oj046")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_opt6g")
+animation = &"downidle"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_oj046")
