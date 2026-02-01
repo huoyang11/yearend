@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dyssxpbqwkor"]
+[gd_scene load_steps=31 format=3 uid="uid://dyssxpbqwkor"]
 
 [ext_resource type="Script" uid="uid://bobgcq7a66b5q" path="res://script/player.gd" id="1_oj046"]
 [ext_resource type="Texture2D" uid="uid://c2ewgps4o1f11" path="res://resource/new_character.png" id="1_umsav"]
+[ext_resource type="PackedScene" uid="uid://c7xk2m4qvh8dn" path="res://prefab/firework_item.tscn" id="2_firework"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oj046"]
-size = Vector2(15, 21)
+size = Vector2(11, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oj046"]
 atlas = ExtResource("1_umsav")
@@ -21,6 +22,86 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1lk0m"]
 atlas = ExtResource("1_umsav")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opt6g"]
+atlas = ExtResource("1_umsav")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmpo2"]
+atlas = ExtResource("1_umsav")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h44ax"]
+atlas = ExtResource("1_umsav")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmbin"]
+atlas = ExtResource("1_umsav")
+region = Rect2(480, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi8ca"]
+atlas = ExtResource("1_umsav")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah4br"]
+atlas = ExtResource("1_umsav")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsru0"]
+atlas = ExtResource("1_umsav")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_comai"]
+atlas = ExtResource("1_umsav")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bplmw"]
+atlas = ExtResource("1_umsav")
+region = Rect2(512, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqkys"]
+atlas = ExtResource("1_umsav")
+region = Rect2(544, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yscn5"]
+atlas = ExtResource("1_umsav")
+region = Rect2(576, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tq5p"]
+atlas = ExtResource("1_umsav")
+region = Rect2(608, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3vih"]
+atlas = ExtResource("1_umsav")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3lcy"]
+atlas = ExtResource("1_umsav")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eilvn"]
+atlas = ExtResource("1_umsav")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_218id"]
+atlas = ExtResource("1_umsav")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfmo2"]
+atlas = ExtResource("1_umsav")
+region = Rect2(640, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmjfm"]
+atlas = ExtResource("1_umsav")
+region = Rect2(672, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfous"]
+atlas = ExtResource("1_umsav")
+region = Rect2(704, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbqt2"]
+atlas = ExtResource("1_umsav")
+region = Rect2(736, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_opt6g"]
 animations = [{
@@ -40,13 +121,98 @@ animations = [{
 "loop": true,
 "name": &"downidle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opt6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmpo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h44ax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmbin")
+}],
+"loop": true,
+"name": &"downrun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi8ca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah4br")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsru0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_comai")
+}],
+"loop": true,
+"name": &"rightidle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bplmw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqkys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yscn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tq5p")
+}],
+"loop": true,
+"name": &"rightrun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3vih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3lcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eilvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_218id")
+}],
+"loop": true,
+"name": &"upidle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfmo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmjfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfous")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbqt2")
+}],
+"loop": true,
+"name": &"uprun",
+"speed": 5.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oj046"]
-properties/0/path = NodePath(".:position")
+properties/0/path = NodePath(".:sync_position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath(".:velocity")
+properties/1/path = NodePath(".:sync_velocity")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 properties/2/path = NodePath("AnimatedSprite2D:flip_h")
@@ -55,19 +221,23 @@ properties/2/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 1
 script = ExtResource("1_oj046")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -0.5)
+position = Vector2(0.5, 5)
 shape = SubResource("RectangleShape2D_oj046")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_opt6g")
-animation = &"downidle"
+animation = &"uprun"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.435, 1.435)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_oj046")
+
+[node name="FireworkItem" parent="." instance=ExtResource("2_firework")]
+angle_min = -2.0
+angle_max = 2.0
+rocket_base_speed = 230.0

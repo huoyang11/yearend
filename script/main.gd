@@ -4,6 +4,7 @@ extends Node2D
 @export var MIN_PLAYERS_TO_START: int = 2
 
 var game_started = false
+var host = "127.0.0.1"
 var port = 9421
 
 func _ready():
@@ -69,7 +70,7 @@ func host_game():
 
 func join_game():
 	var peer = ENetMultiplayerPeer.new()
-	var error = peer.create_client("47.112.2.183", port)
+	var error = peer.create_client(host, port)
 	if error != OK:
 		update_status("无法连接: " + str(error))
 		return
@@ -97,7 +98,7 @@ func _on_peer_disconnected(id):
 
 func add_player(id):
 	if not multiplayer.is_server(): return
-	var spawn_pos = Vector2(100 + randf() * 200, 100 + randf() * 200)
+	var spawn_pos = Vector2(150, 100 + 150)
 	$MultiplayerSpawner.spawn({"id": id, "pos": spawn_pos})
 	
 	# 隐藏大厅 UI
@@ -110,6 +111,9 @@ func _spawn_player(data):
 	var player = player_scene.instantiate()
 	player.name = str(data.id)
 	player.position = data.pos
+	# 初始化插值变量
+	if "sync_position" in player:
+		player.sync_position = data.pos
 	return player
 
 func remove_player(id):

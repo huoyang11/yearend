@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqm7v8k4xhj2r"]
+
+[ext_resource type="Script" uid="uid://dauhg1gal1bef" path="res://script/item/text_firework_item/text_firework_item.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://bhi2rn716rmfq" path="res://resource/font/SourceHanSansSC-Bold.otf" id="2_66u7h"]
+
+[node name="TextFireworkItem" type="Node2D"]
+script = ExtResource("1_script")
+font = ExtResource("2_66u7h")
+explosion_time_max = 1.0

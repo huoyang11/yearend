@@ -1713,6 +1713,7 @@ texture = ExtResource("1_6evq0")
 0:1/animation_frame_1/duration = 1.0
 0:1/animation_frame_2/duration = 1.0
 0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 15:2/size_in_atlas = Vector2i(3, 4)
 15:2/0 = 0
 15:2/0/texture_origin = Vector2i(0, 31)

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7xk2m4qvh8dn"]
+
+[ext_resource type="Script" uid="uid://bbcmd4xwev7dd" path="res://script/item/firework_item/firework_item.gd" id="1_item"]
+
+[node name="FireworkItem" type="Node2D"]
+script = ExtResource("1_item")
