@@ -26,6 +26,10 @@ window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 window/handheld/orientation=1
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

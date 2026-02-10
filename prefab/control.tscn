@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://camwna6h86mn0"]
+
+[ext_resource type="Script" uid="uid://btukp4l55pu1g" path="res://script/ui/control.gd" id="1_qy37d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqnir"]
+size = Vector2(33.715, 31.22)
+
+[node name="TouchScreenButton" type="TouchScreenButton"]
+shape = SubResource("RectangleShape2D_jqnir")
+script = ExtResource("1_qy37d")
+
+[node name="Control" type="Button" parent="."]
+offset_left = -17.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 15.0
+mouse_filter = 2
+text = "上"

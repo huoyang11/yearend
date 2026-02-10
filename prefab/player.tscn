@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://c2ewgps4o1f11" path="res://resource/new_character.png" id="1_umsav"]
 [ext_resource type="PackedScene" uid="uid://c7xk2m4qvh8dn" path="res://prefab/firework_item.tscn" id="2_firework"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oj046"]
-size = Vector2(11, 10)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1o1i"]
+radius = 5.5
+height = 22.76
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oj046"]
 atlas = ExtResource("1_umsav")
@@ -224,8 +225,8 @@ collision_layer = 2
 script = ExtResource("1_oj046")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 5)
-shape = SubResource("RectangleShape2D_oj046")
+position = Vector2(0, -0.86)
+shape = SubResource("CapsuleShape2D_a1o1i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_opt6g")
@@ -233,6 +234,8 @@ animation = &"uprun"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.435, 1.435)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_oj046")
