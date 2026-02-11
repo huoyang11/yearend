@@ -58,7 +58,7 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	# Tab 键切换镜头模式
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB:
+	if event.is_action_pressed("switch"):
 		_toggle_camera_mode()
 		get_viewport().set_input_as_handled()
 		return
@@ -68,11 +68,19 @@ func _input(event: InputEvent) -> void:
 	else:
 		_handle_follow_mode_input(event)
 
+# 请求主场景显示 HUD 提示（烟花不足、镜片不足等）
+func _show_hint_on_main(msg: String, duration: float = 2.0) -> void:
+	var main_node = get_tree().current_scene
+	if main_node and main_node.has_method("_show_hint"):
+		main_node._show_hint(msg, duration)
+
 # ---------- 切换镜头模式 ----------
+const CAMERA_UNLOCK_NEED := 10  # 与 main 中常量一致，用于提示文案
+
 func _toggle_camera_mode() -> void:
 	if camera_mode == CameraMode.FOLLOW:
 		if not free_camera_unlocked:
-			print("需要收集 10 个镜片才能解锁自由镜头")
+			_show_hint_on_main("镜片不足，需收集 %d 个镜片解锁自由镜头" % CAMERA_UNLOCK_NEED)
 			return
 		# 保存当前 zoom，进入自由模式
 		_cam_saved_zoom = $Camera2D.zoom
@@ -93,6 +101,7 @@ func _handle_follow_mode_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		# 需要有烟花弹药才能发射
 		if firework_count <= 0:
+			_show_hint_on_main("烟花不足")
 			return
 		firework_count -= 1
 		

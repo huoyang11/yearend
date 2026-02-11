@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://camwna6h86mn0"]
+[gd_scene load_steps=4 format=3 uid="uid://camwna6h86mn0"]
 
 [ext_resource type="Script" uid="uid://btukp4l55pu1g" path="res://script/ui/control.gd" id="1_qy37d"]
+[ext_resource type="FontFile" uid="uid://bhi2rn716rmfq" path="res://resource/font/SourceHanSansSC-Bold.otf" id="2_jn224"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jqnir"]
 size = Vector2(33.715, 31.22)
@@ -15,4 +16,5 @@ offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 15.0
 mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_jn224")
 text = "上"

@@ -98,6 +98,7 @@ theme_override_fonts/font = ExtResource("3_wp4xf")
 text = "等待操作..."
 
 [node name="server_btn" type="Button" parent="CanvasLayer/mainpage"]
+visible = false
 layout_mode = 0
 offset_left = 66.0
 offset_top = 205.0
@@ -150,20 +151,12 @@ position = Vector2(48, 495)
 action = "ui_left"
 text = "左"
 
-[node name="switch" type="Button" parent="CanvasLayer/playerctrl"]
-layout_mode = 0
-offset_left = 289.0
-offset_top = 437.0
-offset_right = 317.0
-offset_bottom = 469.0
-theme_override_fonts/font = ExtResource("3_wp4xf")
-text = "s"
+[node name="switch" parent="CanvasLayer/playerctrl" instance=ExtResource("5_0ha60")]
+position = Vector2(296, 505)
+action = "switch"
+text = "C"
 
-[node name="boom" type="Button" parent="CanvasLayer/playerctrl"]
-layout_mode = 0
-offset_left = 242.0
-offset_top = 490.0
-offset_right = 296.0
-offset_bottom = 522.0
-theme_override_fonts/font = ExtResource("3_wp4xf")
-text = "boom"
+[node name="boom" parent="CanvasLayer/playerctrl" instance=ExtResource("5_0ha60")]
+position = Vector2(249, 506)
+action = "ui_accept"
+text = "B"

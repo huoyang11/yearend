@@ -4,7 +4,7 @@ extends Node2D
 @export var MIN_PLAYERS_TO_START: int = 5
 
 var game_started = false
-var host = "127.0.0.1"
+var host = "47.112.2.183"
 var port = 9421
 
 # ===== 道具刷新系统 =====
@@ -25,6 +25,8 @@ var _pickup_container: Node2D
 # HUD 引用
 var _hud_firework_label: Label
 var _hud_camera_label: Label
+var _hud_hint_label: Label
+var _hint_timer: Timer
 
 # ===== 昼夜循环 =====
 const DAY_NIGHT_CYCLE := 120.0   # 一轮 120 秒（2 分钟）
@@ -52,6 +54,8 @@ func _ready():
 		# 延迟调用以确保所有节点初始化完成
 		call_deferred("start_dedicated_server_no_ui")
 	else:
+		#有界面模式ip写死本地
+		host = "127.0.0.1"
 		setup_ui()
 
 func start_dedicated_server_no_ui():
@@ -76,10 +80,10 @@ func setup_ui():
 	# 无需代码连接，TouchScreenButton 会自动处理多点触控
 	
 	# switch 和 boom 用信号连接
-	var switch_btn = $CanvasLayer/playerctrl/switch
-	var boom = $CanvasLayer/playerctrl/boom
-	switch_btn.pressed.connect(_on_switch_pressed)
-	boom.pressed.connect(_on_boom_pressed)
+	#var switch_btn = $CanvasLayer/playerctrl/switch
+	#var boom = $CanvasLayer/playerctrl/boom
+	#switch_btn.pressed.connect(_on_switch_pressed)
+	#boom.pressed.connect(_on_boom_pressed)
 	
 	# 创建 HUD
 	_create_hud()
@@ -102,6 +106,7 @@ func _on_boom_pressed():
 	if not player:
 		return
 	if player.firework_count <= 0:
+		_show_hint("烟花不足")
 		return
 	player.firework_count -= 1
 	_update_hud()
@@ -294,7 +299,7 @@ func _on_pickup_body_entered(body, pickup: Area2D, index: int):
 	
 	var type = pickup.get_meta("pickup_type")
 	if type == PICKUP_FIREWORK:
-		body.firework_count += 1
+		body.firework_count += 10
 	else:
 		body.camera_fragments += 1
 		if body.camera_fragments >= CAMERA_UNLOCK_NEED:
@@ -341,6 +346,29 @@ func _create_hud():
 	_hud_camera_label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.7))
 	_hud_camera_label.text = "镜片 0/%d" % CAMERA_UNLOCK_NEED
 	hud.add_child(_hud_camera_label)
+	
+	# 提示标签（居中偏上，临时显示“烟花不足”“镜片不足”等）
+	_hud_hint_label = Label.new()
+	_hud_hint_label.name = "hint_label"
+	_hud_hint_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_hud_hint_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+	_hud_hint_label.add_theme_font_override("font", _font)
+	_hud_hint_label.add_theme_font_size_override("font_size", 18)
+	_hud_hint_label.add_theme_color_override("font_color", Color(1.0, 0.9, 0.5))
+	_hud_hint_label.add_theme_constant_override("outline_size", 4)
+	_hud_hint_label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.8))
+	_hud_hint_label.text = ""
+	_hud_hint_label.set_anchors_preset(Control.PRESET_TOP_WIDE)
+	_hud_hint_label.offset_top = 60
+	_hud_hint_label.offset_left = 20
+	_hud_hint_label.offset_right = -20
+	_hud_hint_label.hide()
+	hud.add_child(_hud_hint_label)
+	
+	_hint_timer = Timer.new()
+	_hint_timer.one_shot = true
+	_hint_timer.timeout.connect(_on_hint_timeout)
+	hud.add_child(_hint_timer)
 
 func _update_hud():
 	var player = _get_local_player()
@@ -353,3 +381,18 @@ func _update_hud():
 			_hud_camera_label.text = "自由镜头: 已解锁"
 		else:
 			_hud_camera_label.text = "镜片 %d/%d" % [player.camera_fragments, CAMERA_UNLOCK_NEED]
+
+# 显示临时提示（烟花不足、镜片不足等），duration 秒后自动消失
+func _show_hint(msg: String, duration: float = 2.0) -> void:
+	if not _hud_hint_label:
+		return
+	_hud_hint_label.text = msg
+	_hud_hint_label.show()
+	if _hint_timer.is_stopped() == false:
+		_hint_timer.stop()
+	_hint_timer.start(duration)
+
+func _on_hint_timeout() -> void:
+	if _hud_hint_label:
+		_hud_hint_label.text = ""
+		_hud_hint_label.hide()
