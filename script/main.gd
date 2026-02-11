@@ -54,8 +54,6 @@ func _ready():
 		# 延迟调用以确保所有节点初始化完成
 		call_deferred("start_dedicated_server_no_ui")
 	else:
-		#有界面模式ip写死本地
-		host = "127.0.0.1"
 		setup_ui()
 
 func start_dedicated_server_no_ui():
@@ -192,7 +190,7 @@ func _get_player_count() -> int:
 func remove_player(id):
 	var player = $world.get_node_or_null(str(id))
 	if player: player.queue_free()
-	update_status("当前玩家: %d/%d" % [_get_player_count(), MIN_PLAYERS_TO_START])
+	update_status("当前玩家: %d/%d" % [_get_player_count() - 1, MIN_PLAYERS_TO_START])
 
 func check_game_start():
 	var current_players = _get_player_count()
