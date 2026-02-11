@@ -13,9 +13,12 @@ config_version=5
 config/name="yearend"
 run/main_scene="uid://db3jjfp1piwg8"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://resource/icon.svg"
-; 守护进程/无头模式：每次 print 后立即刷新到文件，便于实时看日志
 run/flush_stdout_on_print=true
+config/icon="res://resource/icon.svg"
+
+[debug]
+
+file_logging/enable_file_logging=true
 
 [display]
 
@@ -44,13 +47,6 @@ switch={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
-
-[debug]
-
-; 无头/守护进程：把引擎与 print 输出写入文件（默认 user://logs/godot.log）
-file_logging/enable_file_logging=true
-file_logging/log_path="user://logs/godot.log"
-file_logging/max_log_files=5
 
 [rendering]
 

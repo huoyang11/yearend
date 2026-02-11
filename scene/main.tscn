@@ -30,7 +30,6 @@ tile_map_data = PackedByteArray("AADp/wAAAAAAAAEAAADp/wEAAAAAAAEAAADp/wIAAAAAAAE
 tile_set = ExtResource("1_itxqv")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 
 [node name="refresh_point" type="Node2D" parent="."]
 visible = false
