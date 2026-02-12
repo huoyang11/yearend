@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://db3jjfp1piwg8"]
+[gd_scene load_steps=7 format=4 uid="uid://db3jjfp1piwg8"]
 
 [ext_resource type="TileSet" uid="uid://ehh4t78fykeh" path="res://setting/tileset/terrain.tres" id="1_itxqv"]
 [ext_resource type="Script" uid="uid://ctxgthq2y6gy3" path="res://script/main.gd" id="1_main_script"]
 [ext_resource type="FontFile" uid="uid://bhi2rn716rmfq" path="res://resource/font/SourceHanSansSC-Bold.otf" id="3_wp4xf"]
+[ext_resource type="AudioStream" uid="uid://3vbki01d6c2d" path="res://resource/music/BGM.ogg" id="4_4j5ol"]
 [ext_resource type="Texture2D" uid="uid://qrr6567t5dhk" path="res://resource/icon.svg" id="4_brvut"]
 [ext_resource type="PackedScene" uid="uid://camwna6h86mn0" path="res://prefab/control.tscn" id="5_0ha60"]
 
@@ -78,6 +79,11 @@ texture = ExtResource("4_brvut")
 position = Vector2(435, 74)
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("4_brvut")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4j5ol")
+autoplay = true
+parameters/looping = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

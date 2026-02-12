@@ -394,3 +394,9 @@ func _on_hint_timeout() -> void:
 	if _hud_hint_label:
 		_hud_hint_label.text = ""
 		_hud_hint_label.hide()
+		
+		
+func play_BGM(path: String):
+	var bgm = load(path)
+	$BGM.stream = bgm
+	$BGM.play()

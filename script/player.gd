@@ -85,6 +85,7 @@ func _toggle_camera_mode() -> void:
 		# 保存当前 zoom，进入自由模式
 		_cam_saved_zoom = $Camera2D.zoom
 		camera_mode = CameraMode.FREE
+		get_tree().current_scene.play_BGM("res://resource/music/BGM2.mp3")
 		print("镜头模式: 自由")
 	else:
 		# 复位偏移和 zoom，切回跟随模式
@@ -93,6 +94,7 @@ func _toggle_camera_mode() -> void:
 		$Camera2D.zoom = _cam_saved_zoom
 		_cam_dragging = false
 		_touch_points.clear()
+		get_tree().current_scene.play_BGM("res://resource/music/BGM.ogg")
 		print("镜头模式: 跟随")
 
 # ---------- 跟随模式输入（原有逻辑） ----------
